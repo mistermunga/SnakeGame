@@ -5,7 +5,9 @@ def main():
     print("Welcome to Snake!")
     print("Enter game speed: ")
     speed = input()
-    game = Game(grid_size=(30, 15))
+    x = int(input("Width of grid: "))
+    y = int(input("Height of grid: "))
+    game = Game(grid_size=(x, y))
     game.start(speed)
 
 

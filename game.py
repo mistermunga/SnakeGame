@@ -57,7 +57,7 @@ class Game:
         print(f"Score: {self.score}\n")
 
     def game_loop(self, speed: float):
-        while not self.game_over and speed > 0.2:
+        while not self.game_over:
 
             self.update()
             self.render()
@@ -68,7 +68,16 @@ class Game:
     def start(self, speed: str):
         input_thread = threading.Thread(target=self.get_input)
         input_thread.start()
-        self.game_loop(float(speed))
+        speed = float(speed)
+        if speed < 0.1:
+            print("Speed value too low, set it higher")
+            return
+        if speed >= 2:
+            print("Game will be exceptionally slow.")
+            confirm = input("are you sure you wish to proceed? (y/n) ")
+            if confirm != 'y':
+                return
+        self.game_loop(speed)
 
     def get_input(self):
         while not self.game_over:
